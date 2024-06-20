@@ -1,0 +1,46 @@
+<!Doctype html>
+<html>
+  <head>
+    <title>HTML Calculator</title>
+  <script>
+    function xminussinx(x) {
+      return x - Math.sin(x);
+    }    
+    function invxminussinx(y) {
+  var range = 1;
+  var left, middle, right;
+  left = y-range;
+  middle = y;
+  right = y+range;
+  var middleval = xminussinx(middle);
+  var i;
+  for (i=0; i<50; i++) {
+    if (middleval > y) {
+      right = middle;
+      middle = (left + right)/2.0;
+      middleval = xminussinx(middle);
+    } else {
+      left = middle;
+      middle = (left + right)/2.0;
+      middleval = xminussinx(middle);
+    }
+  }
+  return middle;
+    }
+  </script>
+  </head>
+  <body> <h1>HTML Calculator</h1><br>
+  <p>Returns x given y such that y = x - sin(x).</p><br>
+    <table cols=3 rows=4>
+      <tr><td>y</td><td>&nbsp;</td><td><input type = 'text' size = 20 id = 'yinput'></td></tr>
+      <tr><td>x</td><td>&nbsp;</td><td><input type = 'text' READONLY size = 20 id = 'xoutput'></td></tr>
+      <tr><td>x - sin(x)</td><td>&nbsp;</td><td><input type = 'text' READONLY size = 20 id = 'xminussinxoutput'></td></tr>
+      <tr><td>&nbsp;</td><td>&nbsp;</td><td><input type = 'button' size = 20 id = 'calculatebutton' value = "Calculate x" onclick = "
+      var y = parseFloat(document.getElementById('yinput').value);
+      var x = invxminussinx(y);
+      document.getElementById('xoutput').value = x;
+      document.getElementById('xminussinxoutput').value = x - Math.sin(x);
+      "></td></tr>
+    </table>
+  </body>
+</html>
